@@ -5,18 +5,25 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url("../public/space-unsplash.jpg");
+  background-image: url("./background/space-unsplash.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+
 }
 
 .cityTravel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  height: 10vh;
   font-size: 2rem;
   color: #00bcd4;
   text-shadow: 0.2rem 0.2rem 0.2rem #42767c;
@@ -27,10 +34,10 @@ code {
     monospace;
 }
 
-#earth {
+/* #earth {
   width: 500px;
   height: 500px;
-  background: url("../public/earth-map.png") center/220%;
+  background: url("../public/earthmap1k.jpg") center/220%;
   border-radius: 50%;
   box-shadow: inset 8px 36px 80px 36px rgb(0, 0, 0),
   inset -6px 0 12px 4px rgba(255, 255, 255, 0.3);
@@ -51,4 +58,4 @@ code {
 @-webkit-keyframes rotate {
   from { background-position: 0px 0px; }
   to { background-position: 3072px 0px; }
-}
+} */
