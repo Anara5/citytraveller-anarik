@@ -88,6 +88,7 @@ function CityTravel() {
     const handleClick = (e) => {
         e.preventDefault();
         setCity(city);
+        setCityPic(cityPic);
     }
 
 

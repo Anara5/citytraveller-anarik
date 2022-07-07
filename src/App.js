@@ -3,8 +3,6 @@ import CityTravel from './components/CityTravel';
 import * as THREE from 'three';
 import vertexShader from './shaders/vertex.glsl';
 import fragmentShader from './shaders/fragment.glsl';
-import atmosphereVertexShader from './shaders/atmosphereVertex.glsl';
-import atmosphereFragmentShader from './shaders/atmosphereFragment.glsl';
 import React from 'react';
 import earthImg from './background/earthmap1k.jpg';
 import gsap from 'gsap';
@@ -29,7 +27,7 @@ renderer.setPixelRatio(window.devicePixelRatio);
 document.body.appendChild(renderer.domElement);
 
 const sphere = new THREE.Mesh(
-  new THREE.SphereGeometry(5, 50, 50),
+  new THREE.SphereGeometry(3, 32, 32),
   new THREE.MeshBasicMaterial({
     map: new THREE.TextureLoader().load(earthImg),
   }),
@@ -45,21 +43,9 @@ const sphere = new THREE.Mesh(
 );
 
 scene.add(sphere);
+sphere.scale.set(1.0, 1.0, 1.0);
 
-const atmosphere = new THREE.Mesh(
-  new THREE.SphereGeometry(5, 50, 50),
-  new THREE.ShaderMaterial({
-    vertexShader: atmosphereVertexShader,
-    fragmentShader: atmosphereFragmentShader,
-    blending: THREE.AdditiveBlending,
-    side: THREE.BackSide,
-  })
-);
-
-atmosphere.scale.set(1.1, 1.1, 1.1);
-
-scene.add(atmosphere);
-camera.position.z = 15;
+camera.position.z = 8;
 
 const group = new THREE.Group();
 group.add(sphere);
@@ -76,9 +62,9 @@ function animate() {
   sphere.rotation.y += 0.003;
   group.rotation.y += 0.003;
   gsap.to(group.rotation, {
-    x: -mouse.y * 0.3,
+    x: -mouse.y * 0.5,
     y: mouse.x * 0.5,
-    duration: 2,
+    duration: 5,
   })
 }
 animate();
