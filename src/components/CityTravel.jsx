@@ -2,10 +2,6 @@ import React, { useEffect, useState } from 'react';
 import Card from './Card';
 
 function CityTravel() {
-    // a random city from cityList with names of cyties
-    const [city, setCity] = useState(anyCity);
-
-    const [cityPic, setCityPic] = useState([]);
 
     // a list of cities to get a random one from
     const cityList = [
@@ -31,37 +27,81 @@ function CityTravel() {
         'Lisbon',
         'Moscow',
         'Riga',
-        'Bratislava'
+        'Kiev',
+        'Milan',
+        'Rio de Janeiro',
+        'Sofia',
+        'Athens',
+        'Zagreb',
+        'Brussels',
+        'Istanbul',
+        'Amman',
+        'Beirut',
+        'Jerusalem',
+        'Damascus',
+        'Baghdad',
+        'Dubai',
+        'Abu Dhabi',
+        'Muscat',
+        'Cairo',
+        'Tripoli',
+        'Baku',
+        'Yerevan',
+        'Nassau',
+        'Manama',
+        'Dhaka',
+        'Bishkek',
+        'Bangkok',
+        'Jakarta',
+        'Hong Kong',
+        'Beijing',
+        'Seoul',
+        'Kuala Lumpur',
+        'Singapore',
+        'Taipei',
+        'Osaka',
+        'Astana',
+        'Almaty',
     ];
 
+    // a random city from cityList with names of cyties
     let anyCity = cityList[Math.floor(Math.random() * cityList.length)];
+    let pages = (Math.floor(Math.random() * 10) + 1);
+
+    const [city, setCity] = useState(anyCity);
+    const [cityPic, setCityPic] = useState(null);
+
 
     useEffect(() => {
-
-        const accessKey = process.env.REACT_APP_ACCESSKEY;
-
-        setCityPic([])
-        fetch(`https://api.unsplash.com/search/photos?page=1&query=${city}&client_id=${accessKey}`)
+        const myApiKey = process.env.REACT_APP_API_KEY;
+        setCityPic([]);
+        const url = `https://api.unsplash.com/search/photos?page=${pages}&query=${city}&client_id=${myApiKey}`;
+        fetch(url)
         .then(res => res.json())
         .then(data => {
-            setCityPic(data.results)
+            const urls = data.results.map(d => d.urls.regular);
+            setCityPic([...urls]);
         });
-    }, [city]);
+    }, []);
 
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if(city!=='') setCity(city);
+    const handleClick = (e) => {
+        e.preventDefault();
+        setCity(city);
     }
+
 
     return (
         <>
             <div className="cityTravel">
                 <h1>City Travel</h1>
-                <button onClick={handleSubmit}>City</button>
+                <button onClick={handleClick}>Let's travel</button>
             </div>
-            <div className="picture">
-                <img className='img' src={city} />
+            <div className={handleClick ? "card-container" : "card-container-hide"}>
+                 <Card 
+                    cityName={city}
+                    cityPic={cityPic}
+                /> 
             </div>
         </>
     );

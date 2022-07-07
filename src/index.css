@@ -17,42 +17,13 @@ body {
 
 }
 
-.cityTravel {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  margin-top: 5%;
-  height: 10vh;
-  font-size: 2rem;
-  color: #00bcd4;
-  text-shadow: 0.2rem 0.2rem 0.2rem #42767c;
-}
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-.cityTravel button {
-  background-color: #00bcd4;
-  border-radius: 0.5rem;
-  border: none;
-  color: white;
-  padding: 0.5rem;
-  text-align: center;
-  display: inline-block;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
 
-.card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: aliceblue;
-}
+
 
 /* #earth {
   width: 500px;

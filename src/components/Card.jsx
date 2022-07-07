@@ -1,11 +1,15 @@
 import React from 'react';
 
-function Card(props) {
+function Card({ cityName, cityPic }) {
 
   return (
     <div className="card">
-      <img src={this.props.picture} alt="city" />
-      <h1>{this.props.cityName}</h1>
+      <div className="city-name">
+        <h1>{cityName}</h1>
+      </div>
+      <div className="city-picture">
+        <img id="anim_block" className="picture" src={cityPic} alt="city" />
+      </div>
     </div>
   )
 }

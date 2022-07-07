@@ -53,11 +53,6 @@ const atmosphere = new THREE.Mesh(
     fragmentShader: atmosphereFragmentShader,
     blending: THREE.AdditiveBlending,
     side: THREE.BackSide,
-    uniforms: {
-      globeTexture: {
-        value: new THREE.TextureLoader().load(earthImg)
-      }
-    }
   })
 );
 
