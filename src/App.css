@@ -1,12 +1,18 @@
 .App {
 }
 
+canvas {
+  margin-top: 20rem;
+  width: 100%;
+  height: 100%;
+}
+
 .cityTravel {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 5%;
+  margin-top: 3rem;
   height: 8vh;
   font-size: 2rem;
   color: #00bcd4;

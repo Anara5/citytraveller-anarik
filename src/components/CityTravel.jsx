@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Card from './Card';
+require('dotenv').config();
 
 function CityTravel() {
 
@@ -62,17 +63,23 @@ function CityTravel() {
         'Osaka',
         'Astana',
         'Almaty',
+        'Rabat',
+        'Tunis',
+
     ];
 
-    // a random city from cityList with names of cyties
+    // a random city from cityList with names of cities
     let anyCity = cityList[Math.floor(Math.random() * cityList.length)];
     let pages = (Math.floor(Math.random() * 10) + 1);
 
     const [city, setCity] = useState(anyCity);
-    const [cityPic, setCityPic] = useState(null);
+    const [cityPic, setCityPic] = useState([]);
+    const [loading, setLoading] = useState(false);
 
 
-    useEffect(() => {
+    const handleClick = () => {
+        setLoading(false);
+
         const myApiKey = process.env.REACT_APP_API_KEY;
         setCityPic([]);
         const url = `https://api.unsplash.com/search/photos?page=${pages}&query=${city}&client_id=${myApiKey}`;
@@ -80,29 +87,28 @@ function CityTravel() {
         .then(res => res.json())
         .then(data => {
             const urls = data.results.map(d => d.urls.regular);
+            setCity(anyCity);
             setCityPic([...urls]);
+            setLoading(true);
         });
-    }, []);
-
-
-    const handleClick = (e) => {
-        e.preventDefault();
-        setCity(city);
-        setCityPic(cityPic);
-    }
-
+    };
 
     return (
         <>
             <div className="cityTravel">
                 <h1>City Travel</h1>
-                <button onClick={handleClick}>Let's travel</button>
+                <button onClick={() => handleClick()}>Let's travel</button>
             </div>
-            <div className={handleClick ? "card-container" : "card-container-hide"}>
-                 <Card 
-                    cityName={city}
-                    cityPic={cityPic}
-                /> 
+            <div>
+                {loading && <p>Loading...</p>}
+                {cityPic.map((c, i) => (
+                <div key={i} className={loading ? "card-container" : "card-container-hide"}>
+                    <Card 
+                        cityName={city}
+                        cityPic={c}
+                    />
+                </div>
+                ))}
             </div>
         </>
     );
